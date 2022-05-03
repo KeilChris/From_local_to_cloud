@@ -1,0 +1,28 @@
+name: "Basic AVH GetStarted Example"
+workdir: ./
+backend:
+  aws:
+    ami-version: ~=1.2
+    # pin ami id because version lookup fails on AMI version 1.2.0
+    ami-id: ami-0520f21724d333fa7
+    instance-type: t2.micro
+upload:
+  - RTE/**/*
+  - -:RTE/**/RTE_Components.h
+  - CMSDK_CM7_VHT/**/*
+  - Basic.CMSDK_CM7_VHT.cprj
+  - build.py
+  - main.c
+  - main.h
+  - requirements.txt
+  - README.md
+steps:
+  - run: |
+      pip install -r requirements.txt
+      python build.py --verbose build run
+download:
+  - RTE/**/RTE_Components.h
+  - Objects/Basic.axf
+  - Objects/Basic.axf.map
+  - Basic-*.xunit
+  - Basic-*.zip

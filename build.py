@@ -89,7 +89,7 @@ def timestamp(t: datetime = datetime.now()):
 
 @matrix_axis("target", "t", "The project target(s) to build")
 class TargetAxis(Enum):
-    debug = ('debug')
+    debug = ('CMSDK_CM7_VHT')
 
 
 @matrix_action
@@ -99,12 +99,12 @@ def build(config, results):
     if not results[0].success:
         return
 
-    file = f"basic-{timestamp()}.zip"
+    file = f"Basic-{timestamp()}.zip"
     logging.info(f"Archiving build output to {file}...")
     with ZipFile(file, "w") as archive:
-        archive.write(f"Objects/basic.axf")
-        archive.write(f"Objects/basic.axf.map")
-        archive.write(f"Objects/basic.{config.target}.clog")
+        archive.write(f"Objects/Basic.axf")
+        archive.write(f"Objects/Basic.axf.map")
+        archive.write(f"Objects/Basic.{config.target}.clog")
 
 
 @matrix_action
@@ -115,19 +115,19 @@ def run(config, results):
     if not results[0].success:
         print(f"::set-output name=badge::Unittest-failed-{UNITTEST_BADGE_COLOR[None]}")
     else:
-        results[0].test_report.write(f"basic-{ts}.xunit")
+        results[0].test_report.write(f"Basic-{ts}.xunit")
         passed, executed = results[0].test_report.summary
         print(f"::set-output name=badge::Unittest-{passed}%20of%20{executed}%20passed-{UNITTEST_BADGE_COLOR[passed == executed]}")
 
 
 @matrix_command(needs_shell=False)
 def run_cbuild(config):
-    return ["bash", "-c", f"cbuild.sh --quiet basic.{config.target}.cprj"]
+    return ["bash", "-c", f"cbuild.sh --quiet Basic.{config.target}.cprj"]
 
 
 @matrix_command(test_report=ConsoleReport()|CropReport("---\[ UNITY BEGIN \]---", '---\[ UNITY END \]---')|UnityReport())
 def run_vht(config):
-    return ["VHT_Corstone_SSE-300_Ethos-U55", "-q", "--stat", "--simlimit", "1", "-f", "vht_config.txt", "Objects/basic.axf"]
+    return ["VHT_Corstone_SSE-300_Ethos-U55", "-q", "--stat", "--simlimit", "1", "-f", "vht_config.txt", "Objects/Basic.axf"]
 
 
 if __name__ == "__main__":

@@ -55,8 +55,8 @@ jobs:
       with:
         name: results
         path: |
-          Objects/Blinky.axf
-          Objects/Blinky.axf.map
+          Objects/Basic.axf
+          Objects/Basic.axf.map
         retention-days: 1
         if-no-files-found: error
       if: always()

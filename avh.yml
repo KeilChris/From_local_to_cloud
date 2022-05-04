@@ -15,6 +15,7 @@ upload:
   - main.c
   - main.h
   - requirements.txt
+  - vht_config.txt
   - README.md
 steps:
   - run: |

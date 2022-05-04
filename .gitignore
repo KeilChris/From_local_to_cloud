@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# uVision related files
+Objects/*
+
+# Other files
+*.xunit
+*.zip

@@ -127,7 +127,7 @@ def run_cbuild(config):
 
 @matrix_command(test_report=ConsoleReport()|CropReport("---\[ UNITY BEGIN \]---", '---\[ UNITY END \]---')|UnityReport())
 def run_vht(config):
-    return ["VHT_Corstone_SSE-300_Ethos-U55", "-q", "--stat", "--simlimit", "1", "-f", "CMSDK_CM7_VHT/vht_config.txt", "Objects/Basic.axf"]
+    return ["VHT_MPS2_Cortex-M7", "-q", "--stat", "--simlimit", 10, "-f", "vht_config.txt", "Objects/Basic.axf"]
 
 
 if __name__ == "__main__":

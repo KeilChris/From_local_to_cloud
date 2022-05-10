@@ -3,8 +3,8 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'Basic.CMSDK_CM7_VHT' 
- * Target:  'Basic.CMSDK_CM7_VHT' 
+ * Project: 'Basic' 
+ * Target:  'CMSDK_CM7_VHT' 
  */
 
 #ifndef RTE_COMPONENTS_H

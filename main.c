@@ -2,6 +2,7 @@
  * Name:    main.c
  *----------------------------------------------------------------------------*/
 
+// new comment
 #include "RTE_Components.h"
 #include  CMSIS_device_header
 #include "unity.h"

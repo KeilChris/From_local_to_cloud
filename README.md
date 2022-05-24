@@ -103,6 +103,12 @@ CI workflow.
       `AWS_EC2_SECURITY_GROUP_ID`                    | The id of the [VPC security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) to add the EC2 instance to. Shall have format `sg-xxxxxxxx`.
       `AWS_SUBNET_ID`                                | The id of the [VPC subnet](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet) to connect the EC2 instance to. Shall have format `subnet-xxxxxxxx`.
 
+## Development flow
+
+The following image shows the steps that are required to move from local development to the cloud:
+
+![Required steps](./from_local_to_cloud_steps.png)
+
 ## Local build and debug
 
 For developing the tests on the local machine one needs to clone this
@@ -269,6 +275,27 @@ Target (VHT) model is captured (`ConsoleReport`), the Unity output between
 the known text markers is cropped (`CropReport`), and the remaining data
 is converted into JUnit format (`UnityReport`).
 
+## Testing the flow locally with the AVH Client
+
+Before moving to the cloud, you can check locally, if the flow works as expected. The
+[AVH Client for Python](https://github.com/ARM-software/avhclient) helps with that. It offers
+two backends: *local* and *aws*:
+
+![AVHClient workflow](./avhclient.png)
+
+Operation with a local backend assumes that necessary toolchain, AVH targets and utilities
+are installed locally on the machine and configured for execution in command line (refer to
+[Prerequisites](#prerequisites)).
+
+If you run it in *local* backend mode, it:
+- uploads the workspace (basically creates a snapshot of your repo).
+- runs the command line build.
+- executes the test image using the AVH model locally.
+- downloads (saves) the output into the workspace.
+
+Once you have confirmed that this flow is working, you can run it on GitHub as an action in your
+CI pipeline.
+
 ## Running tests in GitHub Actions CI
 
 The repository defines a workflow to build and run the tests using
@@ -277,18 +304,16 @@ GitHub Actions on every change i.e., *push* and *pull_request* triggers.
 To make this work the repository needs to be configured, see Prerequisites
 above.
 
-On every change, the workflow is kicked off executing the following steps.
+On every change, the workflow is kicked off executing the following steps:
 
-- Execute build and test inside an EC2 instance\
-  The [AVH Client for Python](https://github.com/ARM-software/avhclient) is used to
-  - create new EC2 instance
-  - upload the workspace to the EC2 instance using a S3 storage bucket;
-  - run the command line build;
-  - execute the test image using the AVH model
-  - download the output into the workspace.
-  - terminate the EC2 instance 
-- Extract and post-process test output, including
-  - conversion of the log file into XUnit format.
+- The [AVH Client for Python](https://github.com/ARM-software/avhclient):
+  - creates a new EC2 instance.
+  - uploads the workspace to the EC2 instance using a S3 storage bucket.
+  - runs the command line build.
+  - executes the test image using the AVH model.
+  - downloads the output into the workspace.
+  - terminates the EC2 instance.
+- Extract and post-process test output, including conversion of the log file into XUnit format.
 - Archive build/test output\
   The image, log file and XUnit report are attached as a build artifact for
   later analysis.

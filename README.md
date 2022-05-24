@@ -12,6 +12,13 @@ every code change in the repository. The program gets built and run on [Arm
 Virtual Hardware](https://www.arm.com/products/development-tools/simulation/virtual-hardware) cloud infrastructure in AWS and the test results can
 be then observed in repository's [GitHub Actions](https://github.com/KeilChris/From_local_to_cloud/actions).
 
+## Further reading
+
+- [Blog about cloud infrastructure for continuous integration tests](https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/infrastructure-for-continuous-integration-tests)
+- [Arm Virtual Hardware lab series](https://www.arm.com/campaigns/virtual-hardware-lab-series)
+- [Register for your chance to earn free AWS EC2 CPU credits](https://www.arm.com/company/contact-us/virtual-hardware)
+- [Arm Virtual Hardware documentation]([https://av](https://arm-software.github.io/AVH/main/overview/html/index.html))
+
 ## Example Structure
 
 Folder or Files in the example       | Description

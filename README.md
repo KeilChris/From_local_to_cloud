@@ -17,7 +17,7 @@ be then observed in repository's [GitHub Actions](https://github.com/KeilChris/F
 - [Blog about cloud infrastructure for continuous integration tests](https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/infrastructure-for-continuous-integration-tests)
 - [Arm Virtual Hardware lab series](https://www.arm.com/campaigns/virtual-hardware-lab-series)
 - [Register for your chance to earn free AWS EC2 CPU credits](https://www.arm.com/company/contact-us/virtual-hardware)
-- [Arm Virtual Hardware documentation]([https://av](https://arm-software.github.io/AVH/main/overview/html/index.html))
+- [Arm Virtual Hardware documentation](https://arm-software.github.io/AVH/main/overview/html/index.html)
 
 ## Example Structure
 
